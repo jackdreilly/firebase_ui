@@ -103,8 +103,9 @@ class _PasswordViewState extends State<PasswordView> {
     FirebaseAuth _auth = FirebaseAuth.instance;
     FirebaseUser user;
     try {
-      user = await _auth.signInWithEmailAndPassword(
+      final result = await _auth.signInWithEmailAndPassword(
           email: _controllerEmail.text, password: _controllerPassword.text);
+      user = result.user;
       print(user);
     } catch (exception) {
       //TODO improve errors catching
