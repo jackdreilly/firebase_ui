@@ -144,7 +144,7 @@ class _SignUpViewState extends State<SignUpView> {
         await user.updateProfile(userUpdateInfo);
         Navigator.pop(context, true);
       } catch (e) {
-        showErrorDialog(context, e.details);
+        showErrorDialog(context, e.toString());
       }
     } on PlatformException catch (e) {
       print(e.details);

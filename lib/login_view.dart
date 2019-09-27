@@ -64,15 +64,17 @@ class _LoginViewState extends State<LoginView> {
   _handleFacebookSignin() async {
     FacebookLoginResult result =
         await facebookLogin.logIn(['email']);
+    print("Result: ${result.accessToken} ${result.errorMessage} ${result.status}");
     if (result.accessToken != null) {
       try {
         AuthCredential credential = FacebookAuthProvider.getCredential(
             accessToken: result.accessToken.token);
         final userResult = await _auth.signInWithCredential(credential);
+        print(userResult);
         final user = userResult.user;
         print(user);
       } catch (e) {
-        showErrorDialog(context, e.details);
+        showErrorDialog(context, "ERROR ${e.details} $e");
       }
     }
   }
